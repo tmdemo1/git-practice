@@ -6,4 +6,4 @@ echo "No of varaibles passed to the script :: $#"
 
 echo "Script name: $0"
 
-echo "pwd is :: $(pwd)"
+echo "pwd is :: $PWD"
