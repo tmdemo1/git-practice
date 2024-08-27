@@ -11,3 +11,7 @@ echo "pwd is :: $PWD"
 echo "User home dir is :: $HOME"
 
 echo "PID is :: $$"
+
+sleep 100 &
+
+echo "PID of last background command :: $!"
