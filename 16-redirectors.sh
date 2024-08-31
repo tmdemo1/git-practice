@@ -28,9 +28,9 @@ CHECK_ROOT(){
 VALIDATE() {
     if [ $1 -eq 0 ]
     then
-        echo -e $G "$2 is successful." $N &>>$LOG_FILE
+        echo -e "$2 is $G successful. $N" &>>$LOG_FILE
     else
-        echo -e $R "$2 is failed.... please check" $N &>>$LOG_FILE
+        echo -e "$2 is $R failed.... please check $N" &>>$LOG_FILE
         exit 1
     fi
 }
@@ -40,7 +40,7 @@ USER=$(id -u)
 CHECK_ROOT
 
 mkdir -p $LOGS_FOLDER
-echo "***************$LOG_FILE"
+echo "***************$LOG_FILE" &>>$LOG_FILE
 for package in $@
 do
     dnf list installed $package
