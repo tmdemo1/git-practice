@@ -30,7 +30,7 @@ VALIDATE() {
 }
 
 USER=$(id -u)
-echo "**** User is $USER"
+
 CHECK_ROOT
 
 for i in $@
