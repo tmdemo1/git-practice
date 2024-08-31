@@ -5,7 +5,7 @@ SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME-$TIMESTAMP.log"
 mkdir -p $LOGS_FOLDER &>>$LOG_FILE
-ls -l &>>$LOG_FILE
+
 USER=$(id -u)
 
 #text colors
@@ -40,15 +40,15 @@ VALIDATE() {
 CHECK_ROOT
 
 
-# for package in $@
-# do
-#     dnf list installed $package
-#     if [ $? -ne 0 ]
-#     then
-#         echo -e "$Y $package is not installed. Going to install $package. $N" &>>$LOG_FILE
-#         dnf install $package -y
-#         VALIDATE $? "Installing $package"
-#     else
-#         echo -e "$G $package already installed. Nothing to do. $N" &>>$LOG_FILE
-#     fi
-# done
+for package in $@
+do
+    dnf list installed $package
+    if [ $? -ne 0 ]
+    then
+        echo -e "$Y $package is not installed. Going to install $package. $N" &>>$LOG_FILE
+        dnf install $package -y
+        VALIDATE $? "Installing $package"
+    else
+        echo -e "$G $package already installed. Nothing to do. $N" &>>$LOG_FILE
+    fi
+done
