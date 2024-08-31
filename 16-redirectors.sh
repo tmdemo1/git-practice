@@ -18,7 +18,7 @@ R="\e[31m"
 G="\e[32m"
 N="\e[0m"
 Y="\e[33m"
-echo -e "$Y Script started execution at: $(date) $N" &>>$LOG_FILE
+echo -e "$Y Script started execution at: $(date) $N" | tee -a &>>$LOG_FILE
 CHECK_ROOT(){
     if [ $USER -ne 0 ]
     then
