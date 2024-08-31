@@ -33,15 +33,15 @@ USER=$(id -u)
 
 CHECK_ROOT
 
-for i in $@
+for package in $@
 do
-    dnf list installed $i
+    dnf list installed $package
     if [ $? -ne 0 ]
     then
-        echo -e $G "$i is not installed. Going to install $i." $N
-        dnf install $i -y
-        VALIDATE $? "Installing $i"
+        echo -e $G "$package is not installed. Going to install $package." $N
+        dnf install $package -y
+        VALIDATE $? "Installing $package"
     else
-        echo -e $G "$i already installed. Nothing to do." $N
+        echo -e $G "$package already installed. Nothing to do." $N
     fi
 done
