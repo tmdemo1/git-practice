@@ -3,7 +3,7 @@
 CHECK_ROOT(){
     if [ $USER -ne 0 ]
     then
-        echo "Please login with SUDO"
+        echo "Please run this script with root privileges"
         exit 1
     fi
 

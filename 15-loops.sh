@@ -13,7 +13,7 @@ N="\e[0m"
 CHECK_ROOT(){
     if [ $USER -ne 0 ]
     then
-        echo -e $R "Please login with SUDO" $N
+        echo -e $R "Please run this script with root privileges" $N
         exit 1
     fi
 
