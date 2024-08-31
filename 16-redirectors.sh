@@ -15,11 +15,14 @@ G="\e[32m"
 N="\e[0m"
 Y="\e[33m"
 
+USER=$(id -u)
+
+mkdir -p $LOGS_FOLDER
 
 CHECK_ROOT(){
     if [ $USER -ne 0 ]
     then
-        echo -e $R "Please run this script with root privileges" $N &>>$LOG_FILE
+        echo -e "$R Please run this script with root privileges $N" &>>$LOG_FILE
         exit 1
     fi
 
@@ -35,21 +38,18 @@ VALIDATE() {
     fi
 }
 
-USER=$(id -u)
-
 CHECK_ROOT
 
-mkdir -p $LOGS_FOLDER
-echo "***************$LOG_FILE" &>>$LOG_FILE
+
 for package in $@
 do
     dnf list installed $package
     if [ $? -ne 0 ]
     then
-        echo -e $G "$package is not installed. Going to install $package." $N &>>$LOG_FILE
+        echo -e "$Y $package is not installed. Going to install $package. $N" &>>$LOG_FILE
         dnf install $package -y
         VALIDATE $? "Installing $package"
     else
-        echo -e $G "$package already installed. Nothing to do.$N" &>>$LOG_FILE
+        echo -e "$G $package already installed. Nothing to do. $N" &>>$LOG_FILE
     fi
 done
