@@ -23,6 +23,7 @@ CHECK_ROOT(){
     if [ $USER -ne 0 ]
     then
         echo -e "$R Please run this script with root privileges $N" | tee -a $LOG_FILE
+        echo -e "$R Script completed execution with error at: $(date) $N" | tee -a $LOG_FILE
         exit 1
     fi
 
@@ -34,6 +35,7 @@ VALIDATE() {
         echo -e "$2 is $G successful. $N" &>>$LOG_FILE
     else
         echo -e "$2 is $R failed.... please check $N" | tee -a $LOG_FILE
+        echo -e "$R Script completed execution with error at: $(date) $N" | tee -a $LOG_FILE
         exit 1
     fi
 }
@@ -61,4 +63,4 @@ do
         echo -e "$Y $package already installed. Nothing to do. $N" &>>$LOG_FILE
     fi
 done
-echo -e "$Y Script completed execution at: $(date) $N" | tee -a $LOG_FILE
+echo -e "$Y Script completed execution successfully at: $(date) $N" | tee -a $LOG_FILE
