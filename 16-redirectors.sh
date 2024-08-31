@@ -40,7 +40,7 @@ USER=$(id -u)
 CHECK_ROOT
 
 mkdir -p $LOGS_FOLDER
-echo "***************$LOGS_FOLDER"
+echo "***************$LOG_FILE"
 for package in $@
 do
     dnf list installed $package
