@@ -42,11 +42,11 @@ CHECK_ROOT
 
 for package in $@
 do
-    dnf list installed $package
+    dnf list installed $package &>>$LOG_FILE
     if [ $? -ne 0 ]
     then
         echo -e "$Y $package is not installed. Going to install $package. $N" &>>$LOG_FILE
-        dnf install $package -y
+        dnf install $package -y &>>$LOG_FILE
         VALIDATE $? "Installing $package"
     else
         echo -e "$G $package already installed. Nothing to do. $N" &>>$LOG_FILE
