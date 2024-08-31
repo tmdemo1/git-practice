@@ -1,5 +1,14 @@
 #!/bin/bash
 
+CHECK_ROOT(){
+    if [ $USER -ne 0 ]
+    then
+        echo "Please login with SUDO"
+        exit 1
+    fi
+
+}
+
 VALIDATE() {
     if [ $1 -ne 0 ]
     then
@@ -12,11 +21,7 @@ VALIDATE() {
 
 USER=$(id -u)
 
-if [ $USER -ne 0 ]
-then
-    echo "Please login with SUDO"
-    exit 1
-fi
+CHECK_ROOT
 
 dnf list installed git
 if [ $? -ne 0 ]
