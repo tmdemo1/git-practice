@@ -18,11 +18,11 @@ R="\e[31m"
 G="\e[32m"
 N="\e[0m"
 Y="\e[33m"
-echo -e "$Y Script started execution at: $(date) $N" | tee -a &>>$LOG_FILE
+echo -e "$Y Script started execution at: $(date) $N" | tee -a $LOG_FILE
 CHECK_ROOT(){
     if [ $USER -ne 0 ]
     then
-        echo -e "$R Please run this script with root privileges $N" &>>$LOG_FILE
+        echo -e "$R Please run this script with root privileges $N" | tee -a $LOG_FILE
         exit 1
     fi
 
@@ -33,7 +33,7 @@ VALIDATE() {
     then
         echo -e "$2 is $G successful. $N" &>>$LOG_FILE
     else
-        echo -e "$2 is $R failed.... please check $N" &>>$LOG_FILE
+        echo -e "$2 is $R failed.... please check $N" | tee -a $LOG_FILE
         exit 1
     fi
 }
@@ -61,4 +61,4 @@ do
         echo -e "$Y $package already installed. Nothing to do. $N" &>>$LOG_FILE
     fi
 done
-echo -e "$Y Script completed execution at: $(date) $N" &>>$LOG_FILE
+echo -e "$Y Script completed execution at: $(date) $N" | tee -a $LOG_FILE
