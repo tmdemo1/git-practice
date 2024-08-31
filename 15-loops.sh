@@ -13,7 +13,7 @@ N="\e[0m"
 CHECK_ROOT(){
     if [ $USER -ne 0 ]
     then
-        echo -e $R "Please run this script with root privileges" $N
+        echo -e "$R Please run this script with root privileges $N"
         exit 1
     fi
 
@@ -22,9 +22,9 @@ CHECK_ROOT(){
 VALIDATE() {
     if [ $1 -eq 0 ]
     then
-        echo -e $G "$2 is successful." $N
+        echo -e "$2 is $G successful. $N"
     else
-        echo -e $R "$2 is failed.... please check" $N
+        echo -e "$2 is $R failed.... please check $N"
         exit 1
     fi
 }
@@ -38,10 +38,10 @@ do
     dnf list installed $package
     if [ $? -ne 0 ]
     then
-        echo -e $G "$package is not installed. Going to install $package." $N
+        echo -e "$Y $package is not installed. Going to install $package. $N"
         dnf install $package -y
         VALIDATE $? "Installing $package"
     else
-        echo -e $G "$package already installed. Nothing to do." $N
+        echo -e "$Y $package already installed. Nothing to do. $N"
     fi
 done

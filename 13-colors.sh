@@ -13,7 +13,7 @@ N="\e[0m"
 CHECK_ROOT(){
     if [ $USER -ne 0 ]
     then
-        echo -e $R "Please run this script with root privileges" $N
+        echo -e "$R Please run this script with root privileges $N"
         exit 1
     fi
 
@@ -22,9 +22,9 @@ CHECK_ROOT(){
 VALIDATE() {
     if [ $1 -eq 0 ]
     then
-        echo -e $G "$2 is successful." $N
+        echo -e "$G $2 is successful. $N"
     else
-        echo -e $R "$2 is failed.... please check" $N
+        echo -e "$R $2 is failed.... please check $N"
         exit 1
     fi
 }
@@ -36,19 +36,19 @@ CHECK_ROOT
 dnf list installed git
 if [ $? -ne 0 ]
 then
-    echo -e $G "Git is not installed. Going to install Git." $N
+    echo -e "$G Git is not installed. Going to install Git. $N"
     dnf install git -y
     VALIDATE $? "Installing Git"
 else
-    echo -e $G "Git already installed. Nothing to do." $N
+    echo -e "$G Git already installed. Nothing to do. $N"
 fi
 
 dnf list installed mysql
 if [ $? -ne 0 ]
 then
-    echo -e $G "Mysql is not installed. Going to install Mysql." $N
+    echo -e "$G Mysql is not installed. Going to install Mysql. $N"
     dnf install mysql -y
     VALIDATE $? "Installing Mysql"
 else
-    echo -e $G "Mysql already installed. Nothing to do." $N
+    echo -e "$G Mysql already installed. Nothing to do. $N"
 fi
