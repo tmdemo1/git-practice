@@ -48,6 +48,7 @@ if [ $? -ne 0 ]
 then
     echo -e $G "Mysql is not installed. Going to install Mysql." $N
     dnf install mysql -y
+    echo " ************* After installing Mysql. Status is: $?"
     VALIDATE $? "Installing Mysql"
 else
     echo -e $G "Mysql already installed. Nothing to do." $N
