@@ -4,6 +4,7 @@ LOGS_FOLDER="/var/log/shell-script"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME-$TIMESTAMP.log"
+
 mkdir -p $LOGS_FOLDER &>>$LOG_FILE
 
 USER=$(id -u)
@@ -17,7 +18,7 @@ R="\e[31m"
 G="\e[32m"
 N="\e[0m"
 Y="\e[33m"
-
+echo -e "$Y Script started execution at: @date $N" &>>$LOG_FILE
 CHECK_ROOT(){
     if [ $USER -ne 0 ]
     then
@@ -60,3 +61,4 @@ do
         echo -e "$Y $package already installed. Nothing to do. $N" &>>$LOG_FILE
     fi
 done
+echo -e "$Y Script completed execution at: @date $N" &>>$LOG_FILE
